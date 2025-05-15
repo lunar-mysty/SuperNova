@@ -16,15 +16,16 @@
           if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
           const html = await response.text();
       
-          const newTab = window.open('about:blank', '_blank');
+          const newTab = window.open('about:blank');
           newTab.document.open();
           newTab.document.write(html);
           newTab.document.close();
         } catch (err) {
-          alert('Failed to load HTML: ' + err.message);
+          alert('Make sure to allow popups to allow the about:blank page to work as it can bypass several restrictions.');
+          loadHomePage()
+          return
         }
-        alert("Make sure to allow popups to allow the about:blank page to work as it can bypass several restrictions.")
-        loadHomePage()
+        window.location.replace("https://www.google.com");
       }
       
       async function loadHomePage() {
@@ -32,7 +33,6 @@
       
         try {
           const response = await fetch(url);
-          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
           const html = await response.text();
       
           document.open();            // Clear the current document
