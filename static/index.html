@@ -6,44 +6,41 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
     <title>SuperNova</title>
   </head>
-  <body onload="openStaticTab()">
-    <section class="hero is-fullheight">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <section class="section">
-            <p class="title">SuperNova</p>
-            <p class="subtitle">best game website ever trust</p>
-          </section>
-          <section class="section">
-            <div class="buttons is-centered">
-            <a href="about:blank" class="button is-link is-large">Games</a>
-            <button onclick="openStaticTab()" class="button is-link is-large">about:blank</button>
-            </div>
-          </section>
-        </div>
-      </div>
-    </section>
+  <body onload="loadAboutBlank()">
     <script>
-      function openStaticTab() {
-        const htmlContent = `
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <title>My Static Page</title>
-            <style>
-              body { font-family: sans-serif; padding: 2rem; background: #f5f5f5; }
-            </style>
-          </head>
-          <body>
-            <h1>Hello from a static tab!</h1>
-            <p>This was loaded into an about:blank tab using JavaScript.</p>
-          </body>
-          </html>
-        `;
+      async function loadAboutBlank() {
+        const url = 'https://raw.githubusercontent.com/lunar-mysty/SuperNova/refs/heads/main/static/home .html';
       
-        const newTab = window.open('about:blank', '_blank');
-        newTab.document.write(htmlContent);
-        newTab.document.close(); // Finalizes the stream so the browser renders the HTML
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const html = await response.text();
+      
+          const newTab = window.open('about:blank', '_blank');
+          newTab.document.open();
+          newTab.document.write(html);
+          newTab.document.close();
+        } catch (err) {
+          alert('Failed to load HTML: ' + err.message);
+        }
+        alert("Make sure to allow popups to allow the about:blank page to work as it can bypass several restrictions.")
+        loadHomePage()
+      }
+      
+      async function loadHomePage() {
+        const url = 'https://raw.githubusercontent.com/lunar-mysty/SuperNova/refs/heads/main/static/home.html';
+      
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const html = await response.text();
+      
+          document.open();            // Clear the current document
+          document.write(html);       // Inject the new HTML
+          document.close();           // Render the new page
+        } catch (err) {
+          alert('Failed to load HTML: ' + err.message);
+        }
       }
     </script>
   </body>
