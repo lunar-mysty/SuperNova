@@ -90,6 +90,9 @@
 
       // Load a game into the embed container
       function loadGame(url) {
+        // Hide the game list
+        document.getElementById('game-list-section').style.display = 'none';
+
         const container = document.getElementById('game-container');
         container.innerHTML = '';
 
