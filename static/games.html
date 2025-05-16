@@ -109,13 +109,18 @@
         container.appendChild(obj);
 
         // Fullscreen control
+        const fsWrapper = document.createElement('div');
+        fsWrapper.className = 'has-text-centered mt-2';  // Bulma helper to center its contents
+        
         const fsBtn = document.createElement('button');
-        fsBtn.className = 'button is-primary mt-2 is-centered';
+        fsBtn.className = 'button is-primary';
         fsBtn.textContent = 'Fullscreen';
         fsBtn.addEventListener('click', () => {
           if (obj.requestFullscreen) obj.requestFullscreen();
         });
-        container.appendChild(fsBtn);
+        
+        fsWrapper.appendChild(fsBtn);
+        container.appendChild(fsWrapper);
       }
 
       async function loadHomePage() {
