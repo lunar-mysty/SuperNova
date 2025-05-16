@@ -1,39 +1,116 @@
 <!DOCTYPE HTML>
 <html data-theme="dark">
   <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=sunburst"></script>
-    <title>SuperNova</title>
+    <title>SuperNova - Games</title>
+    <style>
+      .game-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+      }
+      .game-button .image {
+        margin-bottom: 0.5rem;
+      }
+      #game-container {
+        background: #111;
+        padding: 1rem;
+      }
+      #game-container object {
+        border: none;
+      }
+    </style>
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar">
       <div class="container">
-          <div id="navMenu" class="navbar-menu">
-            <div class="navbar-start">
-              <div class="navbar-item">
-                <button onclick="loadHomePage()" class="button">Home</button>
-              </div>
-              <div class="navbar-item">
-                <button onclick="loadGamesPage()" class="button">Games</button>
-              </div>
-              <div class="navbar-item">
-                <button class="button">Settings</button>
-              </div>
-            </div>
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <div class="navbar-item"><button onclick="loadHomePage()" class="button">Home</button></div>
+            <div class="navbar-item"><button onclick="loadGamesPage()" class="button">Games</button></div>
+            <div class="navbar-item"><button class="button">Settings</button></div>
           </div>
         </div>
-      </nav>
-    <section class="hero is-fullheight-with-navbar">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <section class="section">
-            <p class="title">Game To Be Added Soon</p>
-          </section>
-        </div>
+      </div>
+    </nav>
+
+    <!-- Game List -->
+    <section class="section">
+      <div class="container">
+        <div class="columns is-multiline" id="game-list"></div>
       </div>
     </section>
+
+    <!-- Embed Container -->
+    <section class="section" id="game-container"></section>
+
     <script>
+      // JSON dictionary of games
+      const gameData = {
+        "BitLife": {
+          "embedUrl": "https://ubg365.github.io/bitlife-life-simulator/play.html",
+          "iconUrl": "https://static.wikia.nocookie.net/logopedia/images/9/99/Bitlife.png/"
+        }
+      };
+
+      // Populate the game list on page load
+      window.addEventListener('DOMContentLoaded', () => {
+        const list = document.getElementById('game-list');
+        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl}]) => {
+          const col = document.createElement('div');
+          col.className = 'column is-3';
+
+          const btn = document.createElement('button');
+          btn.className = 'button game-button';
+
+          const figure = document.createElement('figure');
+          figure.className = 'image is-64x64';
+          const img = document.createElement('img');
+          img.src = iconUrl;
+          figure.appendChild(img);
+
+          const label = document.createElement('span');
+          label.textContent = name;
+
+          btn.appendChild(figure);
+          btn.appendChild(label);
+          btn.addEventListener('click', () => loadGame(embedUrl));
+
+          col.appendChild(btn);
+          list.appendChild(col);
+        });
+      });
+
+      // Load a game into the embed container
+      function loadGame(url) {
+        const container = document.getElementById('game-container');
+        container.innerHTML = '';
+
+        const obj = document.createElement('object');
+        obj.data = url;
+        obj.type = 'text/html';
+        obj.style.width = '100%';
+        obj.style.height = '80vh';
+        obj.allowFullscreen = true;
+        container.appendChild(obj);
+
+        // Fullscreen control
+        const fsBtn = document.createElement('button');
+        fsBtn.className = 'button is-primary mt-2';
+        fsBtn.textContent = 'Fullscreen';
+        fsBtn.addEventListener('click', () => {
+          if (obj.requestFullscreen) obj.requestFullscreen();
+        });
+        container.appendChild(fsBtn);
+      }
+
       async function loadHomePage() {
         const url = 'https://raw.githubusercontent.com/lunar-mysty/SuperNova/refs/heads/main/static/home.html';
       
