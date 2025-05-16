@@ -27,7 +27,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="loadGames()">
     <!-- Navbar -->
     <nav class="navbar">
       <div class="container">
@@ -61,7 +61,7 @@
       };
 
       // Populate the game list on page load
-      window.addEventListener('DOMContentLoaded', () => {
+      function loadGames() {
         const list = document.getElementById('game-list');
         Object.entries(gameData).forEach(([name, {embedUrl, iconUrl}]) => {
           const col = document.createElement('div');
@@ -86,7 +86,7 @@
           col.appendChild(btn);
           list.appendChild(col);
         });
-      });
+      }
 
       // Load a game into the embed container
       function loadGame(url) {
