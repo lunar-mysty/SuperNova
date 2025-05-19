@@ -1,7 +1,7 @@
 # SuperNova
-Please use the `release` branch for deployment as the `main` branch could have broken or incomplete code.
+I know it's nearing the end of the school year but I've still decided to make it. This is a passion project and is not meant to generate revenue, so I have no promise with how often it will be updated over the summer (if I even update over the summer).
 
-## Games to Add in the Future
+## Games to Add in the Future (Hopefully)
 - [ ] 1V1.LOL
 - [ ] 2048
 - [ ] Cookie Clicker
