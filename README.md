@@ -4,7 +4,8 @@ I know it's nearing the end of the school year (as of the time this was written)
 ## Games to Add in the Future (Hopefully)
 - [x] 1V1.LOL
 - [ ] 2048
-- [ ] Cookie Clicker
+- [x] Cookie Clicker (Old Version)
+- [ ] Cookie Clicker (New Version) [only potentionally]
 - [ ] Crossy Road
 - [ ] All the Duck Life Games (or just as many as possible)
 - [ ] All the Learn to Fly Games (again, just as many as possible)
