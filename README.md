@@ -12,5 +12,6 @@ I know it's nearing the end of the school year (as of the time this was written)
 - [ ] Monkey Mart
 - [ ] OvO and OvO 2
 - [ ] Retro Bowl
+- [ ] Ships3D
 
 I will add to this list as I get more ideas for more games.
