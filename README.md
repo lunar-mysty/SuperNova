@@ -5,7 +5,7 @@ I know it's nearing the end of the school year (as of the time this was written)
 - [x] 1V1.LOL
 - [ ] 2048
 - [x] Cookie Clicker (Old Version)
-- [ ] Cookie Clicker (New Version) [only potentionally]
+- [ ] Cookie Clicker (New Version) [only potentially]
 - [ ] Crossy Road
 - [ ] All the Duck Life Games (or just as many as possible)
 - [ ] All the Learn to Fly Games (again, just as many as possible)
