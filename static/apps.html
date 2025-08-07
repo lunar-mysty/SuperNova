@@ -27,7 +27,7 @@
       }
     </style>
   </head>
-  <body onload="loadGames()">
+  <body onload="loadApps()">
     <!-- Navbar -->
     <nav class="navbar">
       <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
@@ -66,7 +66,7 @@
 
     <script>
       // JSON dictionary of games
-      const gameData = {
+      const appData = {
         "Online Code Editor": {
           "embedUrl": "https://onecompiler.com/html",
           "iconUrl": "https://static.vecteezy.com/system/resources/previews/026/328/572/non_2x/code-icon-symbol-design-illustration-vector.jpg"
@@ -78,9 +78,9 @@
       };
 
       // Populate the game list on page load
-      function loadGames() {
+      function loadApps() {
         const list = document.getElementById('game-list');
-        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl}]) => {
+        Object.entries(appData).forEach(([name, {embedUrl, iconUrl}]) => {
           const col = document.createElement('div');
           col.className = 'column is-3';
 
