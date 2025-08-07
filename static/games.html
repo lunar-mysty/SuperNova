@@ -269,6 +269,21 @@
           alert('Failed to load HTML: ' + err.message);
         }
       }
+
+      async function loadAppsPage() {
+        const url = 'https://raw.githubusercontent.com/lunar-mysty/SuperNova/refs/heads/main/static/apps.html';
+      
+        try {
+          const response = await fetch(url);
+          const html = await response.text();
+      
+          document.open();            // Clear the current document
+          document.write(html);       // Inject the new HTML
+          document.close();           // Render the new page
+        } catch (err) {
+          alert('Failed to load HTML: ' + err.message);
+        }
+      }
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
