@@ -30,7 +30,7 @@
             <button class="button">Settings</button>
           </div>
           <div class="navbar-item">
-            <button onclick="loadRequestPage()" class="button">Request a Game</button>
+            <button onclick="loadGame('https://docs.google.com/forms/d/e/1FAIpQLScj-CgS9m20wTffNZ2Ivr4QhgH8cyApEiGtLngQIR4wGTVuqg/viewform?embedded=true')" class="button">Request a Game</button>
           </div>
         </div>
       </div>
@@ -106,6 +106,36 @@
 
       async function loadRequestPage() {
         window.open("https://forms.gle/VzuEmDsAK4jRFp7y5", '_blank').focus();
+      }
+
+      function loadGame(url) {
+        // Hide the game list
+        document.getElementById('game-list-section').style.display = 'none';
+
+        const container = document.getElementById('game-container');
+        container.innerHTML = '';
+
+        const obj = document.createElement('object');
+        obj.data = url;
+        obj.type = 'text/html';
+        obj.style.width = '100%';
+        obj.style.height = '60vh';
+        obj.allowFullscreen = true;
+        container.appendChild(obj);
+
+        // Fullscreen control
+        const fsWrapper = document.createElement('div');
+        fsWrapper.className = 'has-text-centered mt-2';  // Bulma helper to center its contents
+        
+        const fsBtn = document.createElement('button');
+        fsBtn.className = 'button is-primary';
+        fsBtn.textContent = 'Fullscreen';
+        fsBtn.addEventListener('click', () => {
+          if (obj.requestFullscreen) obj.requestFullscreen();
+        });
+        
+        fsWrapper.appendChild(fsBtn);
+        container.appendChild(fsWrapper);
       }
     </script>
   </body>
