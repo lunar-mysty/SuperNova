@@ -194,6 +194,10 @@
           "embedUrl": "https://eli-schwartz.github.io/cookieclicker/",
           "iconUrl": "https://static.wikia.nocookie.net/logopedia/images/4/4d/Cookie_Clicker_%28Icon%29.png/revision/latest?cb=20221127191935"
         },
+        "Cookie Clicker (ON COOLMATHGAMES!)": {
+          "iconUrl": "https://static.wikia.nocookie.net/logopedia/images/4/4d/Cookie_Clicker_%28Icon%29.png/revision/latest?cb=20221127191935",
+          "linkURL": "https://www.coolmathgames.com/0-cookie-clicker"
+        },
         "Monkey Mart": {
           "embedUrl": "https://monkeymart.lol/play/",
           "iconUrl": "https://play-lh.googleusercontent.com/rWReIdyvDaYJPeOxn7hbC0b-96ixGpQKM_EndiQa3SUME8TtI_rNUcI4qsw5teK9mqk"
@@ -203,7 +207,7 @@
       // Populate the game list on page load
       function loadGames() {
         const list = document.getElementById('game-list');
-        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl}]) => {
+        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl, linkURL}]) => {
           const col = document.createElement('div');
           col.className = 'column is-3';
 
@@ -221,11 +225,19 @@
 
           btn.appendChild(figure);
           btn.appendChild(label);
-          btn.addEventListener('click', () => loadGame(embedUrl));
+          if (linkURL) {
+            btn.addEventListener('click', () => loadURLPage(linkURL));
+          } else {
+            btn.addEventListener('click', () => loadGame(embedUrl));
+          }
 
           col.appendChild(btn);
           list.appendChild(col);
         });
+      }
+
+      function loadURLPage(url) {
+        window.open(url, '_blank').focus();
       }
 
       // Load a game into the embed container
