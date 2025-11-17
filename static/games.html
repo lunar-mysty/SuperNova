@@ -96,7 +96,8 @@
         },
         "Smash Karts": {
           "embedUrl": "https://smashkarts.io/",
-          "iconUrl": "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/9c9e529b14731be871b07b89660bbc2a.png"
+          "iconUrl": "https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/9c9e529b14731be871b07b89660bbc2a.png",
+          "disabled": true
         },
         "Copter.io": {
           "embedUrl": "https://copter.io/",
@@ -104,7 +105,8 @@
         },
         "SU Battle Royale": {
           "embedUrl": "https://dnrweqffuwjtx.cloudfront.net/games/2024/su-battle-royale/index.html",
-          "iconUrl": "https://play-lh.googleusercontent.com/2sgXbX2mkUS8psMo-w0XdvW8l5FOQK6HdOBnhIvmQMYSSoYH-4SAIAXZdCwBPPIWgac"
+          "iconUrl": "https://play-lh.googleusercontent.com/2sgXbX2mkUS8psMo-w0XdvW8l5FOQK6HdOBnhIvmQMYSSoYH-4SAIAXZdCwBPPIWgac",
+          "disabled": true
         },
         "YoHoHo.io": {
           "embedUrl": "https://yohoho.io/",
@@ -176,7 +178,8 @@
         },
         "1v1.lol": {
           "embedUrl": "https://1v1.lol/",
-          "iconUrl": "https://kevin.games/assets/images/games/1v1-lol.jpg"
+          "iconUrl": "https://kevin.games/assets/images/games/1v1-lol.jpg",
+          "disabled": true
         },
         "Retro Bowl": {
           "embedUrl": "https://game316009.konggames.com/gamez/0031/6009/live/index.html",
@@ -188,7 +191,8 @@
         },
         "Baseball Bros": {
           "embedUrl": "https://baseball-game.io/game/baseball-bros/",
-          "iconUrl": "https://i1.sndcdn.com/artworks-VBHhC0ih7qZz6Gnd-4k9qQA-t1080x1080.png"
+          "iconUrl": "https://i1.sndcdn.com/artworks-VBHhC0ih7qZz6Gnd-4k9qQA-t1080x1080.png",
+          "disabled": true
         },
         "Cookie Clicker (Old Version)": {
           "embedUrl": "https://eli-schwartz.github.io/cookieclicker/",
@@ -200,14 +204,15 @@
         },
         "Monkey Mart": {
           "embedUrl": "https://monkeymart.lol/play/",
-          "iconUrl": "https://play-lh.googleusercontent.com/rWReIdyvDaYJPeOxn7hbC0b-96ixGpQKM_EndiQa3SUME8TtI_rNUcI4qsw5teK9mqk"
+          "iconUrl": "https://play-lh.googleusercontent.com/rWReIdyvDaYJPeOxn7hbC0b-96ixGpQKM_EndiQa3SUME8TtI_rNUcI4qsw5teK9mqk",
+          "disabled": true
         }
       };
 
       // Populate the game list on page load
       function loadGames() {
         const list = document.getElementById('game-list');
-        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl, linkURL}]) => {
+        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl, linkURL, disabled}]) => {
           const col = document.createElement('div');
           col.className = 'column is-3';
 
@@ -229,6 +234,9 @@
             btn.addEventListener('click', () => loadURLPage(linkURL));
           } else {
             btn.addEventListener('click', () => loadGame(embedUrl));
+          }
+          if (disabled) {
+            btn.setAttribute("disabled", "")
           }
 
           col.appendChild(btn);
