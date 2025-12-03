@@ -203,7 +203,7 @@
         },
         "Cookie Clicker (New Version)": {
           "iconUrl": "https://static.wikia.nocookie.net/logopedia/images/4/4d/Cookie_Clicker_%28Icon%29.png/revision/latest?cb=20221127191935",
-          "linkURL": "https://www.coolmathgames.com/0-cookie-clicker"
+          "linkUrl": "https://www.coolmathgames.com/0-cookie-clicker"
         },
         "Monkey Mart": {
           "embedUrl": "https://monkeymart.lol/play/",
@@ -215,7 +215,7 @@
       // Populate the game list on page load
       function loadGames() {
         const list = document.getElementById('game-list');
-        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl, linkURL, disabled}]) => {
+        Object.entries(gameData).forEach(([name, {embedUrl, iconUrl, linkUrl, disabled}]) => {
           const col = document.createElement('div');
           col.className = 'column is-3';
 
@@ -233,8 +233,8 @@
 
           btn.appendChild(figure);
           btn.appendChild(label);
-          if (linkURL) {
-            btn.addEventListener('click', () => loadURLPage(linkURL));
+          if (linkUrl) {
+            btn.addEventListener('click', () => loadURLPage(linkUrl));
           } else {
             btn.addEventListener('click', () => loadGame(embedUrl));
           }
